@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>مساعدة — طلب دعم</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">مساعدة</a>
+      <nav class="nav">
+        <a href="#form">قدّم طلب</a>
+        <a href="#how">كيف نساعد</a>
+        <a href="admin.html">لوحة المشرف</a>
+      </nav>
+      <button class="menu-btn" aria-label="قائمة">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="how">
+      <h1>منصة مساعدة إلكترونية</h1>
+      <p>قدّم طلبك بسهولة وأرفق الوثائق الداعمة — فريقنا يراجع الطلبات دوريًا.</p>
+    </section>
+
+    <section class="section container" id="form">
+      <h2>نموذج طلب المساعدة</h2>
+      <form id="helpForm">
+        <label>الاسم الكامل
+          <input type="text" id="name" required>
+        </label>
+
+        <label>رقم الهاتف
+          <input type="text" id="phone" required>
+        </label>
+
+        <label>المدينة / المنطقة
+          <input type="text" id="city" required>
+        </label>
+
+        <label>نوع المساعدة
+          <select id="helpType" required>
+            <option value="">اختر نوع المساعدة</option>
+            <option>عائلية</option>
+            <option>زواج</option>
+            <option>دين</option>
+            <option>كفالة أيتام</option>
+            <option>إيجار منزل</option>
+            <option>بحث عن عمل</option>
+            <option>مساعدة مدرسية</option>
+            <option>فك كربة</option>
+            <option>مسرح عن عمل</option>
+            <option>نوع آخر</option>
+          </select>
+        </label>
+
+        <label>وصف الطلب
+          <textarea id="description" rows="5" required></textarea>
+        </label>
+
+        <label>رفع الوثائق (بطاقة شخصية، عقد زواج، إيصال إيجار، أو أي وثيقة)
+          <input type="file" id="files" multiple accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
+          <small>مسموح: PNG, JPG, PDF, DOC (كل ملف حتى 10MB)</small>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">أرسل الطلب</button>
+        </div>
+        <div id="status" role="status" aria-live="polite"></div>
+      </form>
+      <p class="note">ملاحظة: تحفظ بياناتك فقط لغرض مراجعة طلب المساعدة ولن يتم نشرها علنًا.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <p>© 2025 مساعدة — منصة للتواصل وجمع طلبات الدعم</p>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
