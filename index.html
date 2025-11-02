@@ -3,109 +3,421 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>لوحة المشرف — طلبات الأراضي</title>
+    <title>مساعدة — نموذج طلب تخصيص أرض</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> 
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+    <style>
+        /* ---------------------------------- */
+        /* 1. المتغيرات والأساسيات */
+        /* ---------------------------------- */
+        :root{
+            --bg: #f4f7f9;        /* خلفية خفيفة جداً */
+            --muted: #6b7280;     /* لون النص الثانوي */
+            --primary: #0f172a;    /* لون النص الأساسي والداكن */
+            --accent: #10b981;    /* اللون الأساسي (أخضر زمردي) للتأكيد والأزرار */
+            --card: #ffffff;      /* خلفية البطاقة/النموذج */
+            --primary-dark: #0d946d; /* لون أغمق لـ Hover */
+            --border-color: #e6e9ef;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+          
+            font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, system-ui, -apple-system, sans-serif;
+            font-weight: 400;
+        }
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: var(--bg);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+        .container{
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* ---------------------------------- */
+        /* 2. الرأس والتنقل (Header & Nav) */
+        /* ---------------------------------- */
+        .site-header{
+            padding: 12px 0;
+            border-bottom: 1px solid #eef2f5;
+            background-color: var(--card);
+            box-shadow: var(--shadow-sm);
+        }
+        .header-inner{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo{
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+        .nav a{
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--muted);
+            transition: color 0.2s;
+            font-weight: 600;
+        }
+        .nav a:hover {
+            color: var(--primary);
+        }
+        .menu-btn { display: none; }
+
+        /* ---------------------------------- */
+        /* 3. القسم الرئيسي والنموذج */
+        /* ---------------------------------- */
+        .hero{
+            padding: 24px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .hero p {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+        
+        /* تحسين تنسيق القسم/البطاقة */
+        .section{
+            padding: 30px;
+            background: var(--card);
+            border-radius: 12px;
+            margin-top: 24px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #f0f4f7;
+        }
+        .section h2 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ---------------------------------- */
+        /* 4. تنسيق حقول الإدخال والـ Labels */
+        /* ---------------------------------- */
+        label{
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        input[type=text],
+        input[type=email],
+        input[type=password],
+        input[type=number],
+        input[type=tel],
+        select,
+        textarea{
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: #ffffff;
+            color: var(--primary);
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+        }
+        
+        /* تنسيق مجموعات الحقول (Fieldset) */
+        fieldset {
+            border: 1px solid var(--border-color);
+            padding: var(--space-lg) 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+        legend {
+            font-weight: 700;
+            color: var(--primary);
+            padding: 0 10px;
+            font-size: 1.1rem;
+            margin-right: -10px; /* لضمان بدء العنوان بشكل صحيح */
+        }
+        
+        /* تنسيق مجموعات حقول الراديو (Radio Groups) */
+        .field-title {
+            font-weight: 600;
+            margin-top: var(--space-md);
+            margin-bottom: var(--space-sm);
+            color: var(--primary);
+        }
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            margin-bottom: var(--space-lg);
+            flex-wrap: wrap;
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: 400;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+        .radio-group input[type="radio"] {
+            appearance: none;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            margin-left: 0.5rem;
+            position: relative;
+            top: 0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .radio-group input[type="radio"]:checked {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+        .radio-group input[type="radio"]:checked::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 0.5rem;
+            height: 0.5rem;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        /* ---------------------------------- */
+        /* 5. الزر والإجراءات */
+        /* ---------------------------------- */
+        .btn{
+            background: var(--accent);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+        .form-actions{
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            text-align: center;
+        }
+        .note{
+            color: var(--primary);
+            font-size: 14px;
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #fffde7;
+            border-radius: 4px;
+            border-right: 4px solid #ffc107; /* لون تنبيه مختلف */
+            font-weight: 600;
+        }
+        
+        /* ---------------------------------- */
+        /* 6. استجابة الشاشة الصغيرة */
+        /* ---------------------------------- */
+        @media (max-width:800px){
+            .header-inner{
+                flex-direction:column;
+                align-items:flex-start;
+                gap: 15px;
+            }
+            .nav a {
+                margin-left: 0;
+                margin-right: 12px;
+            }
+            .section {
+                padding: 20px;
+            }
+            .radio-group {
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="logo" href="index.html">&#x1F4CA; لوحة المشرف</a>
-            <nav class="nav" aria-label="قائمة المشرف">
-                <a href="index.html">تقديم الطلب</a>
-                <a href="#stats">إحصائيات</a>
-                <a href="#settings">الإعدادات</a>
+            <a class="logo" href="#">&#x2728; مساعدة الأراضي</a>
+            <nav class="nav" aria-label="قائمة التنقل الرئيسية">
+                <a href="#form">تقديم الطلب</a>
+                <a href="#how">عن المنصة</a>
+                <a href="admin.html">لوحة المشرف</a>
             </nav>
+            <button class="menu-btn" aria-label="قائمة">☰</button>
         </div>
     </header>
 
     <main>
-        <div class="container">
-            <h1>ملخص طلبات الأراضي</h1>
+        <section class="hero container" id="how">
+            <h1>منصة مراجعة طلبات تخصيص الأراضي</h1>
+            <p>ولاية صحم - حصر الطلبات المقدمة منذ عام 2009م.</p>
+        </section>
 
-            <section class="section stats-grid" id="stats">
-                <div class="stat-card">
-                    <h3>إجمالي الطلبات</h3>
-                    <p class="stat-number">456</p>
-                </div>
-                <div class="stat-card">
-                    <h3>طلبات قيد المراجعة</h3>
-                    <p class="stat-number accent-text">120</p>
-                </div>
-                <div class="stat-card">
-                    <h3>طلبات قُبلت</h3>
-                    <p class="stat-number success-text">201</p>
-                </div>
-                <div class="stat-card">
-                    <h3>متوسط سنة التقديم</h3>
-                    <p class="stat-number muted-text">2014</p>
-                </div>
-            </section>
+        <section class="section container" id="form">
+            <h2>نموذج طلب حصر البيانات</h2>
+            
+            <form id="helpForm">
 
-            <section class="section" style="margin-top: 40px;">
-                <h2>عرض الطلبات المُقدمة</h2>
+                <fieldset class="personal-info">
+                    <legend>1. البيانات الأساسية للطلب</legend>
+                    
+                    <label for="fullName">الاسم الكامل
+                        <input type="text" id="fullName" required placeholder="الاسم رباعي">
+                    </label>
+
+                    <label for="civilId">الرقم المدني
+                        <input type="text" id="civilId" required placeholder="الرقم المدني المكون من X خانات">
+                    </label>
+
+                    <label for="phone">رقم الهاتف
+                        <input type="tel" id="phone" required placeholder="مثال: 9xxxxxxx">
+                    </label>
+
+                    <label for="email">البريد الإلكتروني
+                        <input type="email" id="email" placeholder="اختياري: example@domain.com">
+                    </label>
+
+                    <label for="applicationYear">سنة تقديم الطلب (الأصلية)
+                        <input type="number" id="applicationYear" required min="2009" max="2025" placeholder="مثال: 2012">
+                    </label>
+
+                    <label for="requestType">نوع الطلب
+                        <select id="requestType" required>
+                            <option value="">اختر نوع الطلب</option>
+                            <option value="سكني">سكني</option>
+                            <option value="زراعي">زراعي</option>
+                            <option value="صناعي">صناعي</option>
+                            <option value="تجاري">تجاري</option>
+                            <option value="آخر">نوع آخر</option>
+                        </select>
+                    </label>
+                    
+                    <label for="maritalStatus">الحالة الاجتماعية
+                        <select id="maritalStatus" required>
+                            <option value="">اختر الحالة</option>
+                            <option value="أعزب">أعزب</option>
+                            <option value="متزوج">متزوج</option>
+                            <option value="مطلق">مطلق</option>
+                            <option value="أرمل">أرمل</option>
+                        </select>
+                    </label>
+
+                    <label for="familyMembers">عدد أفراد الأسرة (بما فيهم رب الأسرة)
+                        <input type="number" id="familyMembers" required min="1" placeholder="مثال: 5">
+                    </label>
+                </fieldset>
+
+                <fieldset class="job-info">
+                    <legend>2. بيانات العمل والدخل والمؤهل</legend>
+
+                    <label for="jobTitle">الوظيفة / الحالة الوظيفية
+                        <input type="text" id="jobTitle" required placeholder="متقاعد، موظف حكومي، مسرح، مقطوع الأمان الوظيفي، إلخ.">
+                    </label>
+                    
+                    <label for="previousEmployer">جهة العمل السابقة (إن وجدت)
+                        <input type="text" id="previousEmployer" placeholder="مثال: وزارة التربية والتعليم">
+                    </label>
+
+                    <label for="income">الدخل الشهري للأسرة (بالريال العماني)
+                        <input type="number" id="income" required min="0" placeholder="المبلغ الكلي">
+                    </label>
+
+                    <label for="qualification">المؤهل العلمي
+                        <input type="text" id="qualification" required placeholder="مثال: دبلوم تعليم عام، بكالوريوس، ماجستير">
+                    </label>
+                </fieldset>
+
+                <fieldset class="assets-info">
+                    <legend>3. بيانات السكن والأملاك ووسائل النقل</legend>
+
+                    <p class="field-title">السكن الحالي:</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="currentHousing" value="إيجار" required> إيجار</label>
+                        <label><input type="radio" name="currentHousing" value="مقيم مع الأهل" required> مقيم برفقة الأهل</label>
+                        <label><input type="radio" name="currentHousing" value="ملكية" required> ملكية خاصة</label>
+                    </div>
+                    
+                    <p class="field-title">هل لديك أملاك (أراضٍ/عقارات مسجلة باسمك)؟</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="hasProperty" value="نعم" required> نعم</label>
+                        <label><input type="radio" name="hasProperty" value="لا" required> لا</label>
+                    </div>
+
+                    <label for="propertiesDetails">اذكر الأملاك بالتفصيل (إذا كانت الإجابة نعم)
+                        <textarea id="propertiesDetails" rows="3" placeholder="مثال: قطعة أرض سكنية في بركاء، شقة في مسقط."></textarea>
+                    </label>
+
+                    <p class="field-title">هل لديك وسيلة نقل خاصة؟</p>
+                    <div class="radio-group">
+                        <label><input type="radio" name="hasVehicle" value="نعم" required> نعم</label>
+                        <label><input type="radio" name="hasVehicle" value="لا" required> لا</label>
+                    </div>
+
+                    <label for="vehicleType">نوع وسيلة النقل (إذا كانت الإجابة نعم)
+                        <input type="text" id="vehicleType" placeholder="مثال: سيارة صالون، شاحنة صغيرة">
+                    </label>
+
+                    <label for="manufacturingYear">سنة الصنع (لوسيلة النقل)
+                        <input type="number" id="manufacturingYear" min="1990" max="2025" placeholder="مثال: 2018">
+                    </label>
+                </fieldset>
                 
-                <div class="filter-controls" style="display:flex; gap: 15px; margin-bottom: 20px;">
-                    <select class="input-filter">
-                        <option value="">فلترة حسب سنة التقديم</option>
-                        <option>2009 - 2012</option>
-                        <option>2013 - 2016</option>
-                        <option>2017 - 2020</option>
-                        <option>2021 - 2025</option>
-                    </select>
-                    <button class="btn small">تطبيق</button>
-                </div>
+                <label for="files">
+                    رفع الوثائق الداعمة (اختياري)
+                    <input type="file" id="files" multiple accept=".png,.jpg,.jpeg,.pdf">
+                    <small style="color:var(--muted); font-weight:400; margin-top:4px;">مسموح: PNG, JPG, PDF (يُفضل PDF)</small>
+                </label>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>الاسم</th>
-                            <th>سنة التقديم</th>
-                            <th>نوع الطلب</th>
-                            <th>الحالة الوظيفية</th>
-                            <th>الإجراءات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>خالد بن أحمد البلوشي</td>
-                            <td>2011</td>
-                            <td>سكني</td>
-                            <td>متقاعد</td>
-                            <td><button class="btn small">عرض</button></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>مريم بنت سعيد المقبالي</td>
-                            <td>2014</td>
-                            <td>زراعي</td>
-                            <td>موظف حكومي</td>
-                            <td><button class="btn small">عرض</button></td>
-                        </tr>
-                         <tr>
-                            <td>3</td>
-                            <td>يوسف بن علي الشيزاوي</td>
-                            <td>2017</td>
-                            <td>تجاري</td>
-                            <td>مسرح</td>
-                            <td><button class="btn small">عرض</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p class="note" style="margin-top: 20px;">الجدول أعلاه يعرض أحدث 100 طلب. لعرض المزيد استخدم الفلاتر.</p>
-            </section>
-        </div>
+
+                <fieldset class="notes">
+                    <legend>4. ملاحظات إضافية</legend>
+                    <label for="notes">ملاحظات
+                        <textarea id="notes" rows="4" placeholder="أية معلومات أخرى تراها ضرورية للطلب..."></textarea>
+                    </label>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn">إرسال بيانات الطلب &#10148;</button>
+                </div>
+                <div id="status" role="status" aria-live="polite"></div>
+            </form>
+            <p class="note">**ملاحظة هامة:** هذه البيانات يتم جمعها لأغراض مراجعة طلبات الأراضي المتراكمة منذ عام 2009م لولاية صحم. يرجى التأكد من دقتها.</p>
+        </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="container" style="text-align:center; padding: 20px 0; color:var(--muted); font-size:14px; border-top: 1px solid var(--border-color); margin-top: 24px;">
-            <p>لوحة المشرف © 2025</p>
+            <p>© 2025 منصة حصر طلبات الأراضي - ولاية صحم</p>
         </div>
     </footer>
-    <script src="app.js"></script>
+
+    <script type="module" src="app.js"></script>
 </body>
 </html>
