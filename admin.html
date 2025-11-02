@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css"> 
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
     <header class="site-header">
@@ -19,101 +18,94 @@
                 <a href="#stats">إحصائيات</a>
                 <a href="#settings">الإعدادات</a>
             </nav>
-            <button class="menu-btn" aria-label="قائمة">☰</button>
         </div>
     </header>
 
     <main>
         <div class="container">
-            <h1 style="font-size: 2rem; margin: 30px 0 10px;">ملخص طلبات الأراضي - ولاية صحم</h1>
+            <h1>ملخص طلبات الأراضي</h1>
 
             <section class="section stats-grid" id="stats">
                 <div class="stat-card">
-                    <h3>إجمالي الطلبات المُدخلة</h3>
+                    <h3>إجمالي الطلبات</h3>
                     <p class="stat-number">456</p>
                 </div>
                 <div class="stat-card">
-                    <h3>طلبات تحتاج مراجعة</h3>
+                    <h3>طلبات قيد المراجعة</h3>
                     <p class="stat-number accent-text">120</p>
                 </div>
                 <div class="stat-card">
-                    <h3>طلبات سنة 2009-2012</h3>
+                    <h3>طلبات قُبلت</h3>
                     <p class="stat-number success-text">201</p>
                 </div>
                 <div class="stat-card">
-                    <h3>عدد طالبي الأراضي</h3>
-                    <p class="stat-number muted-text">450</p>
+                    <h3>متوسط سنة التقديم</h3>
+                    <p class="stat-number muted-text">2014</p>
                 </div>
             </section>
 
             <section class="section" style="margin-top: 40px;">
-                <h2>عرض الطلبات المُقدمة وتفاصيلها</h2>
+                <h2>عرض الطلبات المُقدمة</h2>
                 
-                <div class="filter-controls" style="display:flex; gap: 15px; margin-bottom: 20px; align-items: center;">
-                    <label for="filterYear" style="margin-bottom: 0;">فلترة حسب سنة التقديم:</label>
-                    <select id="filterYear" class="input-filter" style="max-width: 150px; flex-grow: 0;">
-                        <option value="">جميع السنوات</option>
+                <div class="filter-controls" style="display:flex; gap: 15px; margin-bottom: 20px;">
+                    <select class="input-filter">
+                        <option value="">فلترة حسب سنة التقديم</option>
                         <option>2009 - 2012</option>
                         <option>2013 - 2016</option>
                         <option>2017 - 2020</option>
                         <option>2021 - 2025</option>
                     </select>
-                    <button class="btn small">تطبيق الفلتر</button>
-                    <button class="btn small" style="background-color: #dc3545; margin-right: auto;">تصدير Excel</button>
+                    <button class="btn small">تطبيق</button>
                 </div>
 
-                <table id="requestsTable">
+                <table>
                     <thead>
                         <tr>
-                            <th>الرقم المدني</th>
-                            <th>الاسم الكامل</th>
-                            <th>سنة الطلب</th>
-                            <th>الحالة الاجتماعية</th>
-                            <th>الدخل الشهري</th>
-                            <th>أملاك؟</th>
+                            <th>#</th>
+                            <th>الاسم</th>
+                            <th>سنة التقديم</th>
+                            <th>نوع الطلب</th>
+                            <th>الحالة الوظيفية</th>
                             <th>الإجراءات</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1234xxxx</td>
+                            <td>1</td>
                             <td>خالد بن أحمد البلوشي</td>
                             <td>2011</td>
-                            <td>متزوج</td>
-                            <td>550 ر.ع</td>
-                            <td>لا</td>
-                            <td><button class="btn small" style="background-color: var(--primary-dark);">عرض التفاصيل</button></td>
+                            <td>سكني</td>
+                            <td>متقاعد</td>
+                            <td><button class="btn small">عرض</button></td>
                         </tr>
                         <tr>
-                            <td>5678xxxx</td>
+                            <td>2</td>
                             <td>مريم بنت سعيد المقبالي</td>
                             <td>2014</td>
-                            <td>مطلقة</td>
-                            <td>1200 ر.ع</td>
-                            <td>نعم</td>
-                            <td><button class="btn small" style="background-color: var(--primary-dark);">عرض التفاصيل</button></td>
+                            <td>زراعي</td>
+                            <td>موظف حكومي</td>
+                            <td><button class="btn small">عرض</button></td>
                         </tr>
                          <tr>
-                            <td>9012xxxx</td>
+                            <td>3</td>
                             <td>يوسف بن علي الشيزاوي</td>
                             <td>2017</td>
-                            <td>أعزب</td>
-                            <td>300 ر.ع</td>
-                            <td>لا</td>
-                            <td><button class="btn small" style="background-color: var(--primary-dark);">عرض التفاصيل</button></td>
+                            <td>تجاري</td>
+                            <td>مسرح</td>
+                            <td><button class="btn small">عرض</button></td>
                         </tr>
                     </tbody>
                 </table>
-                <p class="note" style="margin-top: 20px;">الجدول أعلاه يعرض الطلبات التي تم إدخالها بواسطة النموذج. هذه البيانات هي بيانات تجريبية.</p>
+                <p class="note" style="margin-top: 20px;">الجدول أعلاه يعرض أحدث 100 طلب. لعرض المزيد استخدم الفلاتر.</p>
             </section>
         </div>
     </main>
 
     <footer>
         <div class="container" style="text-align:center; padding: 20px 0; color:var(--muted); font-size:14px; border-top: 1px solid var(--border-color); margin-top: 24px;">
-            <p>لوحة المشرف © 2025 - جميع الحقوق محفوظة.</p>
+            <p>لوحة المشرف © 2025</p>
         </div>
     </footer>
-    <script src="app.js"></script> 
+    <script src="app.js"></script>
 </body>
 </html>
