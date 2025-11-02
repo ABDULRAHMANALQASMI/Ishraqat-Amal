@@ -1,105 +1,124 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>مساعدة — طلب دعم</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <header class="site-header">
-        <div class="container header-inner">
-            <a class="logo" href="#">&#x2728; مساعدة</a>
-            <nav class="nav" aria-label="قائمة التنقل الرئيسية">
-                <a href="#form">قدّم طلب</a>
-                <a href="#how">كيف نساعد</a>
-                <a href="admin.html" class="admin-link">&#128105;&#x200D;&#x2695;&#xFE0F; لوحة المشرف</a>
-            </nav>
-            <button class="menu-btn" aria-label="قائمة">☰</button>
+<section class="section container" id="form">
+    <h2>نموذج طلب تخصيص أرض (ولاية صحم - منذ 2009م)</h2>
+    <p class="intro-text">يرجى ملء كافة الحقول بدقة لضمان معالجة طلبكم.</p>
+
+    <form id="helpForm">
+
+        <fieldset class="personal-info">
+            <legend>1. البيانات الأساسية للطلب</legend>
+            
+            <label for="fullName">الاسم الكامل
+                <input type="text" id="fullName" required placeholder="الاسم رباعي">
+            </label>
+
+            <label for="civilId">الرقم المدني
+                <input type="text" id="civilId" required placeholder="الرقم المدني المكون من X خانات">
+            </label>
+
+            <label for="phone">رقم الهاتف
+                <input type="tel" id="phone" required placeholder="مثال: 9xxxxxxx">
+            </label>
+
+            <label for="email">البريد الإلكتروني
+                <input type="email" id="email" placeholder="اختياري: example@domain.com">
+            </label>
+
+            <label for="applicationYear">سنة تقديم الطلب (الأصلية)
+                <input type="number" id="applicationYear" required min="2009" max="2025" placeholder="مثال: 2012">
+            </label>
+
+            <label for="requestType">نوع الطلب
+                <select id="requestType" required>
+                    <option value="">اختر نوع الطلب</option>
+                    <option value="سكني">سكني</option>
+                    <option value="زراعي">زراعي</option>
+                    <option value="صناعي">صناعي</option>
+                    <option value="تجاري">تجاري</option>
+                    <option value="آخر">نوع آخر</option>
+                </select>
+            </label>
+            
+            <label for="maritalStatus">الحالة الاجتماعية
+                <select id="maritalStatus" required>
+                    <option value="">اختر الحالة</option>
+                    <option value="أعزب">أعزب</option>
+                    <option value="متزوج">متزوج</option>
+                    <option value="مطلق">مطلق</option>
+                    <option value="أرمل">أرمل</option>
+                </select>
+            </label>
+
+            <label for="familyMembers">عدد أفراد الأسرة (بما فيهم رب الأسرة)
+                <input type="number" id="familyMembers" required min="1" placeholder="مثال: 5">
+            </label>
+        </fieldset>
+
+        <fieldset class="job-info">
+            <legend>2. بيانات العمل والدخل والمؤهل</legend>
+
+            <label for="jobTitle">الوظيفة / الحالة الوظيفية
+                <input type="text" id="jobTitle" required placeholder="متقاعد، موظف حكومي، مسرح، مقطوع الأمان الوظيفي، إلخ.">
+            </label>
+            
+            <label for="previousEmployer">جهة العمل السابقة (إن وجدت)
+                <input type="text" id="previousEmployer" placeholder="مثال: وزارة التربية والتعليم">
+            </label>
+
+            <label for="income">الدخل الشهري للأسرة (بالريال العماني)
+                <input type="number" id="income" required min="0" placeholder="المبلغ الكلي">
+            </label>
+
+            <label for="qualification">المؤهل العلمي
+                <input type="text" id="qualification" required placeholder="مثال: دبلوم تعليم عام، بكالوريوس، ماجستير">
+            </label>
+        </fieldset>
+
+        <fieldset class="assets-info">
+            <legend>3. بيانات السكن والأملاك ووسائل النقل</legend>
+
+            <p class="field-title">السكن الحالي:</p>
+            <div class="radio-group">
+                <label><input type="radio" name="currentHousing" value="إيجار" required> إيجار</label>
+                <label><input type="radio" name="currentHousing" value="مقيم مع الأهل" required> مقيم برفقة الأهل</label>
+                <label><input type="radio" name="currentHousing" value="ملكية" required> ملكية خاصة</label>
+            </div>
+            
+            <p class="field-title">هل لديك أملاك (أراضٍ/عقارات مسجلة باسمك)؟</p>
+            <div class="radio-group">
+                <label><input type="radio" name="hasProperty" value="نعم" required> نعم</label>
+                <label><input type="radio" name="hasProperty" value="لا" required> لا</label>
+            </div>
+
+            <label for="propertiesDetails">اذكر الأملاك بالتفصيل (إذا كانت الإجابة نعم)
+                <textarea id="propertiesDetails" rows="3" placeholder="مثال: قطعة أرض سكنية في بركاء، شقة في مسقط."></textarea>
+            </label>
+
+            <p class="field-title">هل لديك وسيلة نقل خاصة؟</p>
+            <div class="radio-group">
+                <label><input type="radio" name="hasVehicle" value="نعم" required> نعم</label>
+                <label><input type="radio" name="hasVehicle" value="لا" required> لا</label>
+            </div>
+
+            <label for="vehicleType">نوع وسيلة النقل (إذا كانت الإجابة نعم)
+                <input type="text" id="vehicleType" placeholder="مثال: سيارة صالون، شاحنة صغيرة">
+            </label>
+
+            <label for="manufacturingYear">سنة الصنع (لوسيلة النقل)
+                <input type="number" id="manufacturingYear" min="1990" max="2025" placeholder="مثال: 2018">
+            </label>
+        </fieldset>
+
+        <fieldset class="notes">
+            <legend>4. ملاحظات إضافية</legend>
+            <label for="notes">ملاحظات
+                <textarea id="notes" rows="4" placeholder="أية معلومات أخرى تراها ضرورية للطلب..."></textarea>
+            </label>
+        </fieldset>
+
+        <div class="form-actions">
+            <button type="submit" class="btn">إرسال بيانات الطلب &#10148;</button>
         </div>
-    </header>
-
-    <main>
-        <section class="hero container" id="how">
-            <h1>منصة **مساعدة** إلكترونية</h1>
-            <p>قدّم طلبك بسهولة وأرفق الوثائق الداعمة.</p>
-            <p class="sub-text">فريقنا يراجع الطلبات دوريًا، ونتطلع لخدمتكم بأسرع وقت.</p>
-        </section>
-
-        <section class="section container" id="form">
-            <h2>نموذج طلب المساعدة <span class="form-icon">&#x2757;</span></h2>
-            <form id="helpForm">
-
-                <fieldset class="contact-info">
-                    <legend>بيانات التواصل الأساسية</legend>
-                    <label for="name">الاسم الكامل
-                        <input type="text" id="name" required placeholder="أدخل اسمك الكامل">
-                    </label>
-    
-                    <label for="phone">رقم الهاتف
-                        <input type="tel" id="phone" required placeholder="مثال: 05xxxxxxx">
-                    </label>
-    
-                    <label for="city">المدينة / المنطقة
-                        <input type="text" id="city" required placeholder="أدخل المدينة أو المنطقة التي تسكن بها">
-                    </label>
-                </fieldset>
-                
-                <label for="helpType">نوع المساعدة
-                    <select id="helpType" required>
-                        <option value="">اختر نوع المساعدة</option>
-                        <option value="عائلية">عائلية</option>
-                        <option value="زواج">زواج</option>
-                        <option value="دين">دين (سداد ديون)</option>
-                        <option value="كفالة أيتام">كفالة أيتام</option>
-                        <option value="إيجار منزل">إيجار منزل</option>
-                        <option value="بحث عن عمل">بحث عن عمل</option>
-                        <option value="مساعدة مدرسية">مساعدة مدرسية</option>
-                        <option value="فك كربة">فك كربة / مساعدة عاجلة</option>
-                        <option value="نوع آخر">نوع آخر (يرجى التوضيح)</option>
-                    </select>
-                </label>
-
-                <label for="description">وصف الطلب **(مهم)**
-                    <textarea id="description" rows="5" required placeholder="اشرح طلبك بالتفصيل، وكيف يمكننا المساعدة..."></textarea>
-                </label>
-
-                <label for="files" class="file-upload-label">
-                    رفع الوثائق **(اختياري)** <span class="file-count">(0 مرفقات)</span>
-                    <input type="file" id="files" multiple accept=".png,.jpg,.jpeg,.pdf">
-                    <small>مسموح: PNG, JPG, PDF (يُفضل PDF) | الحد الأقصى للملف الواحد: 10MB</small>
-                </label>
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn">أرسل الطلب &#10148;</button>
-                </div>
-                <div id="status" role="status" aria-live="polite"></div>
-            </form>
-            <p class="note">**ملاحظة هامة:** تحفظ بياناتك فقط لغرض مراجعة طلب المساعدة ولن يتم نشرها علنًا. نحن نلتزم بالسرية التامة.</p>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>© 2025 مساعدة — منصة للتواصل وجمع طلبات الدعم</p>
-            <p class="footer-links">
-                <a href="#how">كيف نساعد</a> | 
-                <a href="privacy.html">سياسة الخصوصية</a>
-            </p>
-        </div>
-    </footer>
-
-    <script type="module" src="app.js"></script>
-    <script>
-        // Simple script to update file count
-        document.getElementById('files').addEventListener('change', function() {
-            const count = this.files.length;
-            document.querySelector('.file-count').textContent = `(${count} مرفق${count === 1 ? '' : 'ات'})`;
-        });
-    </script>
-</body>
-</html>
+        <div id="status" role="status" aria-live="polite"></div>
+    </form>
+    <p class="note">**ملاحظة هامة:** هذه البيانات يتم جمعها لأغراض مراجعة طلبات الأراضي المتراكمة منذ عام 2009م لولاية صحم. يرجى التأكد من دقتها.</p>
+</section>
