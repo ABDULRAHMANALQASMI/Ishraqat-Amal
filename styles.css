@@ -1,0 +1,35 @@
+/* ... (كود CSS الذي قدمته لك سابقًا، وهو شامل لتنسيقات الجدول) ... */
+
+/* أضف هذا التنسيق في نهاية ملف styles.css لدعم لوحة المشرف */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.stat-card {
+    background-color: var(--card);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+.stat-card h3 {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 5px;
+}
+.stat-number {
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+.accent-text { color: var(--accent); }
+.success-text { color: #28a745; }
+.muted-text { color: var(--muted); }
+
+.input-filter {
+    flex-grow: 1; /* للسماح لها بالتمدد */
+    max-width: 300px;
+}
+/* ... (بقية كود styles.css) ... */
