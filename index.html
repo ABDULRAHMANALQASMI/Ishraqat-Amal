@@ -1,84 +1,105 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>مساعدة — طلب دعم</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>مساعدة — طلب دعم</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="#">مساعدة</a>
-      <nav class="nav">
-        <a href="#form">قدّم طلب</a>
-        <a href="#how">كيف نساعد</a>
-        <a href="admin.html">لوحة المشرف</a>
-      </nav>
-      <button class="menu-btn" aria-label="قائمة">☰</button>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero container" id="how">
-      <h1>منصة مساعدة إلكترونية</h1>
-      <p>قدّم طلبك بسهولة وأرفق الوثائق الداعمة — فريقنا يراجع الطلبات دوريًا.</p>
-    </section>
-
-    <section class="section container" id="form">
-      <h2>نموذج طلب المساعدة</h2>
-      <form id="helpForm">
-        <label>الاسم الكامل
-          <input type="text" id="name" required>
-        </label>
-
-        <label>رقم الهاتف
-          <input type="text" id="phone" required>
-        </label>
-
-        <label>المدينة / المنطقة
-          <input type="text" id="city" required>
-        </label>
-
-        <label>نوع المساعدة
-          <select id="helpType" required>
-            <option value="">اختر نوع المساعدة</option>
-            <option>عائلية</option>
-            <option>زواج</option>
-            <option>دين</option>
-            <option>كفالة أيتام</option>
-            <option>إيجار منزل</option>
-            <option>بحث عن عمل</option>
-            <option>مساعدة مدرسية</option>
-            <option>فك كربة</option>
-            <option>مسرح عن عمل</option>
-            <option>نوع آخر</option>
-          </select>
-        </label>
-
-        <label>وصف الطلب
-          <textarea id="description" rows="5" required></textarea>
-        </label>
-
-        <label>رفع الوثائق (بطاقة شخصية، عقد زواج، إيصال إيجار، أو أي وثيقة)
-          <input type="file" id="files" multiple accept=".png,.jpg,.jpeg,.pdf,.doc,.docx">
-          <small>مسموح: PNG, JPG, PDF, DOC (كل ملف حتى 10MB)</small>
-        </label>
-
-        <div class="form-actions">
-          <button type="submit" class="btn">أرسل الطلب</button>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#">&#x2728; مساعدة</a>
+            <nav class="nav" aria-label="قائمة التنقل الرئيسية">
+                <a href="#form">قدّم طلب</a>
+                <a href="#how">كيف نساعد</a>
+                <a href="admin.html" class="admin-link">&#128105;&#x200D;&#x2695;&#xFE0F; لوحة المشرف</a>
+            </nav>
+            <button class="menu-btn" aria-label="قائمة">☰</button>
         </div>
-        <div id="status" role="status" aria-live="polite"></div>
-      </form>
-      <p class="note">ملاحظة: تحفظ بياناتك فقط لغرض مراجعة طلب المساعدة ولن يتم نشرها علنًا.</p>
-    </section>
-  </main>
+    </header>
 
-  <footer class="site-footer container">
-    <p>© 2025 مساعدة — منصة للتواصل وجمع طلبات الدعم</p>
-  </footer>
+    <main>
+        <section class="hero container" id="how">
+            <h1>منصة **مساعدة** إلكترونية</h1>
+            <p>قدّم طلبك بسهولة وأرفق الوثائق الداعمة.</p>
+            <p class="sub-text">فريقنا يراجع الطلبات دوريًا، ونتطلع لخدمتكم بأسرع وقت.</p>
+        </section>
 
-  <script type="module" src="app.js"></script>
+        <section class="section container" id="form">
+            <h2>نموذج طلب المساعدة <span class="form-icon">&#x2757;</span></h2>
+            <form id="helpForm">
+
+                <fieldset class="contact-info">
+                    <legend>بيانات التواصل الأساسية</legend>
+                    <label for="name">الاسم الكامل
+                        <input type="text" id="name" required placeholder="أدخل اسمك الكامل">
+                    </label>
+    
+                    <label for="phone">رقم الهاتف
+                        <input type="tel" id="phone" required placeholder="مثال: 05xxxxxxx">
+                    </label>
+    
+                    <label for="city">المدينة / المنطقة
+                        <input type="text" id="city" required placeholder="أدخل المدينة أو المنطقة التي تسكن بها">
+                    </label>
+                </fieldset>
+                
+                <label for="helpType">نوع المساعدة
+                    <select id="helpType" required>
+                        <option value="">اختر نوع المساعدة</option>
+                        <option value="عائلية">عائلية</option>
+                        <option value="زواج">زواج</option>
+                        <option value="دين">دين (سداد ديون)</option>
+                        <option value="كفالة أيتام">كفالة أيتام</option>
+                        <option value="إيجار منزل">إيجار منزل</option>
+                        <option value="بحث عن عمل">بحث عن عمل</option>
+                        <option value="مساعدة مدرسية">مساعدة مدرسية</option>
+                        <option value="فك كربة">فك كربة / مساعدة عاجلة</option>
+                        <option value="نوع آخر">نوع آخر (يرجى التوضيح)</option>
+                    </select>
+                </label>
+
+                <label for="description">وصف الطلب **(مهم)**
+                    <textarea id="description" rows="5" required placeholder="اشرح طلبك بالتفصيل، وكيف يمكننا المساعدة..."></textarea>
+                </label>
+
+                <label for="files" class="file-upload-label">
+                    رفع الوثائق **(اختياري)** <span class="file-count">(0 مرفقات)</span>
+                    <input type="file" id="files" multiple accept=".png,.jpg,.jpeg,.pdf">
+                    <small>مسموح: PNG, JPG, PDF (يُفضل PDF) | الحد الأقصى للملف الواحد: 10MB</small>
+                </label>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn">أرسل الطلب &#10148;</button>
+                </div>
+                <div id="status" role="status" aria-live="polite"></div>
+            </form>
+            <p class="note">**ملاحظة هامة:** تحفظ بياناتك فقط لغرض مراجعة طلب المساعدة ولن يتم نشرها علنًا. نحن نلتزم بالسرية التامة.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2025 مساعدة — منصة للتواصل وجمع طلبات الدعم</p>
+            <p class="footer-links">
+                <a href="#how">كيف نساعد</a> | 
+                <a href="privacy.html">سياسة الخصوصية</a>
+            </p>
+        </div>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+    <script>
+        // Simple script to update file count
+        document.getElementById('files').addEventListener('change', function() {
+            const count = this.files.length;
+            document.querySelector('.file-count').textContent = `(${count} مرفق${count === 1 ? '' : 'ات'})`;
+        });
+    </script>
 </body>
 </html>
