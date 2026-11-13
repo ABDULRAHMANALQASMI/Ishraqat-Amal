@@ -733,3 +733,15 @@ footer {
 .field-completed:focus {
     border-color: var(--accent) !important;
 }
+.section {
+    animation: none;
+}
+
+fieldset.reveal {
+    transition:
+        opacity .75s var(--ease-premium),
+        transform .75s var(--ease-premium),
+        filter .75s var(--ease-premium),
+        border-color .45s ease,
+        box-shadow .45s ease;
+}
