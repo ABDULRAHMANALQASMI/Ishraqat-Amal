@@ -120,3 +120,124 @@ function displayAdminData(tableBody) {
         actionCell.appendChild(detailButton);
     });
 }
+
+/* ==========================================
+   ISHRAQAT AMAL — INTERACTIVE ANIMATIONS
+   ========================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // 1. Scroll Reveal Animation
+    const revealElements = document.querySelectorAll(
+        '.section, fieldset, .note, .stat-card, footer'
+    );
+
+    revealElements.forEach(element => {
+        element.classList.add('reveal');
+    });
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -35px 0px'
+        });
+
+        revealElements.forEach(element => observer.observe(element));
+    } else {
+        revealElements.forEach(element => {
+            element.classList.add('is-visible');
+        });
+    }
+
+    // 2. Staggered animation for fieldsets
+    document.querySelectorAll('fieldset').forEach((fieldset, index) => {
+        fieldset.style.transitionDelay = `${index * 70}ms`;
+    });
+
+    // 3. Header shadow on scrolling
+    const header = document.querySelector('.site-header');
+
+    if (header) {
+        const updateHeader = () => {
+            header.style.boxShadow =
+                window.scrollY > 20
+                    ? '0 8px 25px rgba(15,23,42,.09)'
+                    : '0 4px 12px rgba(0,0,0,.05)';
+        };
+
+        window.addEventListener('scroll', updateHeader, {
+            passive: true
+        });
+
+        updateHeader();
+    }
+
+    // 4. Smooth navigation
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', event => {
+            const target = document.querySelector(link.getAttribute('href'));
+
+            if (target) {
+                event.preventDefault();
+                target.scrollIntoView({
+                    behavior: window.matchMedia(
+                        '(prefers-reduced-motion: reduce)'
+                    ).matches ? 'auto' : 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // 5. Interactive input feedback
+    document.querySelectorAll(
+        'input:not([type="radio"]):not([type="file"]), select, textarea'
+    ).forEach(input => {
+        input.addEventListener('change', () => {
+            input.classList.toggle(
+                'field-completed',
+                input.value.trim() !== ''
+            );
+        });
+    });
+
+    // 6. Button click feedback
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('pointerdown', () => {
+            button.style.transform = 'scale(.97)';
+        });
+
+        ['pointerup', 'pointerleave', 'pointercancel'].forEach(eventName => {
+            button.addEventListener(eventName, () => {
+                button.style.transform = '';
+            });
+        });
+    });
+
+    // 7. Animate successful form submission
+    const status = document.getElementById('status');
+
+    if (status) {
+        const statusObserver = new MutationObserver(() => {
+            if (status.textContent.trim()) {
+                status.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest'
+                });
+            }
+        });
+
+        statusObserver.observe(status, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+});
