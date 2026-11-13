@@ -724,3 +724,12 @@ footer {
         transform: translateY(-3px);
     }
 }
+
+.field-completed {
+    border-color: rgba(16,185,129,.55) !important;
+    background-color: #f7fdf9 !important;
+}
+
+.field-completed:focus {
+    border-color: var(--accent) !important;
+}
